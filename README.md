@@ -27,7 +27,7 @@ From the root of your project folder run...
 
 The generator will install the Grunt and Bower configs wherever you run that command. Your HTML, CSS and JS installation can vary depending
 on the type of backend you are using. The generator defaults the website root to a folder called 'website'. If you want your front end assets
-to be placed in your current directory use '.' for your website root.
+to be placed in your current directory use `.` for your website root.
 
 ## Working with Grunt
 
