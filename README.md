@@ -26,8 +26,15 @@ From the root of your project folder run...
 `$ yo breakpoint`
 
 The generator will install the Grunt and Bower configs wherever you run that command. Your HTML, CSS and JS installation can vary depending
-on the type of backend you are using. The generator defaults the website root to a folder called 'website'. If you want your front end assets
+on the type of backend you are using. The generator defaults the website root to a folder called `website`. If you want your front end assets
 to be placed in your current directory use `.` for your website root.
+
+#### About the defaults
+
+This project scaffolds projects to suit our development setup at [Capstrat](https://www.capstrat.com). It's likely that
+you will want to choose the **'No assumptions'** setup and place your front end assets in your current directory. The Django
+option only creates a base.html file in a templates directory. The Wordpress setup is very basic but it will install
+Wordpress for you.
 
 ## Working with Grunt
 
