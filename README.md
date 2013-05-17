@@ -1,11 +1,11 @@
 # Yeoman Breakpoint Generator
 
-The Yeoman Breakpoint generator is a HTML5 Boilerplate style framework for starting a responsive project with [Breakpoint](https://github.com/lesjames/breakpoint).
-It uses Node, Yeoman, Grunt and Bower to scaffold a project, manage dependencies and ready static files for production. It uses RequireJS to structure your
-Javascript into modules. It uses Bourbon for CSS3 mixins and Modernizr for progressive enhancements. The generator has project defaults for Django and Wordpress,
-or you can have it assume a vanilla setup.
+The Yeoman Breakpoint generator is an opinionated starting point for responsive [Breakpoint](https://github.com/lesjames/breakpoint) projects.
+It uses [Node](http://nodejs.org/), [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/) to scaffold a project, manage dependencies and ready static files for production.
+It uses [RequireJS](http://requirejs.org/) to structure your Javascript into modules. It uses [Bourbon](http://bourbon.io/) for CSS3 mixins and [Modernizr](http://modernizr.com/) for progressive enhancements.
+The generator has project defaults for [Django](https://www.djangoproject.com/) and [Wordpress](http://wordpress.org/), or you can have it assume a vanilla setup.
 
-To learn how to use the Breakpoint grid system refer to the [Breakpoint readme](https://github.com/lesjames/breakpoint).
+To learn how to use the Breakpoint grid system please refer to the [Breakpoint](https://github.com/lesjames/breakpoint) project's repo.
 
 ## Preping Your Computer
 
