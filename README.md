@@ -21,7 +21,9 @@ Install Grunt, Yeoman, Bower and the Breakpoint generator...
 
 ## Running the Generator
 
-From the root of your project folder run `$ yo breakpoint`
+From the root of your project folder run...
+
+`$ yo breakpoint`
 
 The generator will install the Grunt and Bower configs wherever you run that command. Your HTML, CSS and JS installation can vary depending
 on the type of backend you are using. The generator defaults the website root to a folder called 'website'. If you want your front end assets

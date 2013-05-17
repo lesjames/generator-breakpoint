@@ -7,8 +7,8 @@ module.exports = function (grunt) {
 
     // configurable paths
     var yeomanConfig = {
-        dev: '<%= siteroot %>/dev',
-        prod: '<%= siteroot %>/static'
+        dev: '<%= websiteRoot %>/dev',
+        prod: '<%= websiteRoot %>/static'
     };
 
     grunt.initConfig({
@@ -41,7 +41,11 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 src: ['<%%= yeoman.dev %>/sass/style.scss'],
+                <% if (projectType === '3') { %>
+                dest: '<%= websiteRoot %>/style.css'
+                <% } else { %>
                 dest: '<%%= yeoman.dev %>/css/style.css'
+                <% } %>
             }
         },
         jshint: {

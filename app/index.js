@@ -8,14 +8,9 @@ var BreakpointGenerator = module.exports = function BreakpointGenerator(args, op
 
     yeoman.generators.Base.apply(this, arguments);
 
-    console.log('Django: ' + this.django);
-    console.log('Wordpress: ' + this.wordpress);
-
-/*
     this.on('end', function () {
         this.installDependencies({ skipInstall: options['skip-install'] });
     });
-*/
 
 };
 
@@ -37,20 +32,22 @@ BreakpointGenerator.prototype.askDjango = function askDjango() {
     '\n   __'+'\'.___.\''.yellow+'__' +
     '\n ´   '+'`  |'.red+'° '+'´ Y'.red+' `\n';
 
-    var note =
-    'Let\'s install Breakpoint!\n\n' +
-    'This generator has an opinionated setup for Django or Wordpress.' +
-    'If you don\'t want the opinionated setup answer no to the setup questions' +
-    'and everything will be dumped into your current directory.\n';
+    var note = 'Let\'s install Breakpoint!\n';
 
     console.log(welcome);
     console.log(note);
 
-    var prompts = [{
-        name: 'django',
-        message: 'Is this a Django project?',
-        default: 'y/N'
-    }];
+    var prompts = [
+        {
+            name: 'projectType',
+            message: 'What type of project is this? (pick a number)\n1. No assumptions\n2. Django\n3. Wordpress\n--> '
+        },
+        {
+            name: 'websiteRoot',
+            message: 'What folder is your website root?',
+            default: 'website'
+        }
+    ];
 
     this.prompt(prompts, function (err, props) {
 
@@ -58,7 +55,8 @@ BreakpointGenerator.prototype.askDjango = function askDjango() {
           return this.emit('error', err);
         }
 
-        this.django = /y/i.test(props.django);
+        this.projectType = props.projectType;
+        this.websiteRoot = props.websiteRoot;
 
         cb();
 
@@ -66,44 +64,18 @@ BreakpointGenerator.prototype.askDjango = function askDjango() {
 
 };
 
-BreakpointGenerator.prototype.askWordpress = function askWordpress() {
-
-    var cb = this.async();
-
-    var prompts = [{
-        name: 'wordpress',
-        message: 'Is this a Wordpress project?',
-        default: 'y/N'
-    }];
-
-    if (!this.django) {
-        this.prompt(prompts, function (err, props) {
-
-            if (err) {
-              return this.emit('error', err);
-            }
-
-            this.wordpress = /y/i.test(props.wordpress);
-
-            cb();
-
-        }.bind(this));
-    } else {
-        cb();
-    }
-};
-
 BreakpointGenerator.prototype.theme = function theme() {
 
     var cb = this.async();
+    this.wpVersion = '3.5.1';
 
     var prompts = [{
         name: 'themeName',
-        message: 'What should the theme folder be called?',
+        message: 'What should the Wordpress theme folder be called?',
         default: 'site'
     }];
 
-    if (this.wordpress) {
+    if (this.projectType === '3') {
         this.prompt(prompts, function (err, props) {
 
             if (err) {
@@ -120,30 +92,42 @@ BreakpointGenerator.prototype.theme = function theme() {
     }
 };
 
+BreakpointGenerator.prototype.getWP = function getWP() {
+    var cb = this.async();
+
+    if (this.projectType === '3') {
+
+        this.log.writeln('Downloading Wordpress version ' + this.wpVersion);
+        this.tarball('https://github.com/WordPress/WordPress/tarball/'+ this.wpVersion, this.websiteRoot, cb);
+        this.websiteRoot = this.websiteRoot + '/wp-content/themes/' + this.themeName
+
+    } else {
+        cb();
+    }
+};
+
 BreakpointGenerator.prototype.install = function install() {
 
     this.copy('bower.json', 'bower.json');
     this.copy('package.json', 'package.json');
+    this.template('Gruntfile.js');
+    this.template('_bowerrc', '.bowerrc');
+    this.directory('dev', this.websiteRoot + '/dev');
 
-    if (this.django) {
+    if (this.projectType === '2') {
 
-        this.directory('dev', 'website/dev');
-        this.copy('index.html', 'website/templates/base.html');
-        this.writeFileFromString('{\n    "directory": "website/dev/components"\n}\n', '.bowerrc');
-        this.siteroot = 'website/';
-        this.template('Gruntfile.js');
+        // django
+        this.copy('index.html', this.websiteRoot + '/templates/base.html');
 
-    } else if (this.wordpress) {
+    } else if (this.projectType === '3') {
 
-        this.directory('dev', 'website/wp-content/themes/'+ this.themeName +'/dev');
-        this.copy('index.html', 'website/wp-content/themes/'+ this.themeName +'/index.php');
-        this.writeFileFromString('{\n    "directory": "website/wp-content/themes/'+ this.themeName +'/dev/components"\n}\n', '.bowerrc');
+        // wordpress
+        this.copy('index.html', this.websiteRoot + '/index.php');
 
     } else {
 
-        this.directory('dev');
-        this.copy('index.html', 'index.html');
-        this.copy('.bowerrc', '.bowerrc');
+        // everything else
+        this.template('index.html', this.websiteRoot + '/index.html');
 
     }
 

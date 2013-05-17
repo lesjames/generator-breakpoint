@@ -1,1 +1,3 @@
-{ "directory": "dev/components" }
+{
+    "directory": "<%= websiteRoot %>/dev/components"
+}

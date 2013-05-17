@@ -2,6 +2,9 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
+    <% if (projectType === '2') { %>
+    {% load staticfiles %}
+    <% } %>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,19 +14,62 @@
 
     <meta name="viewport" content="width=device-width">
 
-    <!-- production: /static/css/style.css -->
+    <% if (projectType === '2') { %>
+    {% if debug %}
+        <link rel="stylesheet" href="/dev/css/style.css">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endif %}
+    <% } else if (projectType === '3') { %>
+    <?php if WP_DEBUG : ?>
+        <link rel="stylesheet" href="/dev/css/style.css">
+    <?php else : ?>
+        <link rel="stylesheet" href="/static/css/style.css">
+    <?php endif ?>
+    <% } else { %>
+    <!-- in production: /static/css/style.css -->
     <link rel="stylesheet" href="/dev/css/style.css">
+    <% } %>
 
-    <!-- production: /static/js/vendor/modernizr.js -->
+    <% if (projectType === '2') { %>
+    {% if debug %}
+        <script src="/dev/js/vendor/modernizr.js"></script>
+    {% else %}
+        <script src="{% static 'js/vendor/modernizr.js' %}"></script>
+    {% endif %}
+    <% } else if (projectType === '3') { %>
+    <?php if WP_DEBUG : ?>
+        <script src="/dev/js/vendor/modernizr.js"></script>
+    <?php else : ?>
+        <script src="/static/js/vendor/modernizr.js"></script>
+    <?php endif ?>
+    <% } else { %>
+    <!-- in production: /static/js/vendor/modernizr.js -->
     <script src="/dev/components/modernizr/modernizr.js"></script>
+    <% } %>
+
 
 </head>
 <body>
 
     <!-- site goes here -->
 
-    <!-- production: /static/js/main /static/js/vendor/require.js -->
+    <% if (projectType === '2') { %>
+    {% if debug %}
+        <script data-main="/dev/js/main" src="/dev/components/requirejs/require.js"></script>
+    {% else %}
+        <script data-main="{% static 'js/main.js' %}" src="{% static 'js/vendor/require.js' %}"></script>
+    {% endif %}
+    <% } else if (projectType === '3') { %>
+    <?php if WP_DEBUG : ?>
+        <script data-main="/dev/js/main" src="/dev/components/requirejs/require.js"></script>
+    <?php else : ?>
+        <script data-main="/static/js/main" src="/static/js/vendor/require.js"></script>
+    <?php endif ?>
+    <% } else { %>
+    <!-- in production: /static/js/main /static/js/vendor/require.js -->
     <script data-main="/dev/js/main" src="/dev/components/requirejs/require.js"></script>
+    <% } %>
 
 </body>
 </html>
