@@ -31,12 +31,26 @@ to be placed in your current directory use '.' for your website root.
 
 ## Working with Grunt
 
-When in development, Grunt will compile your Sass and lint your JS.
+When in development your front end assets will be placed in a 'dev' folder. During development
+Grunt will compile your Sass and lint your JS. You can have grunt watch your dev folder for changes...
 
-Start Grunt watch: `$ grunt watch`
+`$ grunt watch`
 
-Manual compile: `$ grunt`
+You can also manually trigger a Sass compile by typing `$ grunt`.
 
-When pushing to production, Grunt will minify your css, javascript and images.
+When pushing to production, Grunt will compile, concat and minify your front end assets and place them in
+a new folder called 'static'. Your HTML needs to point to this folder in the production environment. To create
+a build type...
 
-Minify: `$ grunt build`
+`$ grunt build`
+
+The easiest way to have your HTML templates switch between development and production versions of your front end
+assets is to include some logic in your templates. An example of what this looks like is...
+
+```html
+{% if development %}
+    <link rel="stylesheet" href="/dev/css/style.css">
+{% else %}
+    <link rel="stylesheet" href="/static/css/style.css">
+{% endif %}
+```
