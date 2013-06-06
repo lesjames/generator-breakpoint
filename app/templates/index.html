@@ -21,11 +21,11 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endif %}
     <% } else if (projectType === '3') { %>
-    <?php if WP_DEBUG : ?>
+    <?php if (WP_DEBUG) : ?>
         <link rel="stylesheet" href="/dev/css/style.css">
     <?php else : ?>
         <link rel="stylesheet" href="/static/css/style.css">
-    <?php endif ?>
+    <?php endif; ?>
     <% } else { %>
     <!-- in production: /static/css/style.css -->
     <link rel="stylesheet" href="/dev/css/style.css">
@@ -38,11 +38,11 @@
         <script src="{% static 'js/vendor/modernizr.js' %}"></script>
     {% endif %}
     <% } else if (projectType === '3') { %>
-    <?php if WP_DEBUG : ?>
+    <?php if (WP_DEBUG) : ?>
         <script src="/dev/js/vendor/modernizr.js"></script>
     <?php else : ?>
         <script src="/static/js/vendor/modernizr.js"></script>
-    <?php endif ?>
+    <?php endif; ?>
     <% } else { %>
     <!-- in production: /static/js/vendor/modernizr.js -->
     <script src="/dev/components/modernizr/modernizr.js"></script>
@@ -61,11 +61,11 @@
         <script data-main="{% static 'js/main.js' %}" src="{% static 'js/vendor/require.js' %}"></script>
     {% endif %}
     <% } else if (projectType === '3') { %>
-    <?php if WP_DEBUG : ?>
+    <?php if (WP_DEBUG) : ?>
         <script data-main="/dev/js/main" src="/dev/components/requirejs/require.js"></script>
     <?php else : ?>
         <script data-main="/static/js/main" src="/static/js/vendor/require.js"></script>
-    <?php endif ?>
+    <?php endif; ?>
     <% } else { %>
     <!-- in production: /static/js/main /static/js/vendor/require.js -->
     <script data-main="/dev/js/main" src="/dev/components/requirejs/require.js"></script>
