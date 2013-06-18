@@ -33,13 +33,13 @@
 
     <% if (projectType === '2') { %>
     {% if debug %}
-        <script src="/dev/js/vendor/modernizr.js"></script>
+        <script src="/dev/components/modernizr/modernizr.js"></script>
     {% else %}
         <script src="{% static 'js/vendor/modernizr.js' %}"></script>
     {% endif %}
     <% } else if (projectType === '3') { %>
     <?php if (WP_DEBUG) : ?>
-        <script src="/dev/js/vendor/modernizr.js"></script>
+        <script src="/dev/components/modernizr/modernizr.js"></script>
     <?php else : ?>
         <script src="/static/js/vendor/modernizr.js"></script>
     <?php endif; ?>
