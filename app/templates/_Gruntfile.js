@@ -41,17 +41,37 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 src: ['<%%= yeoman.dev %>/sass/style.scss'],
-                <% if (projectType === '3') { %>
-                dest: '<%= websiteRoot %>/style.css'
+                <% if (projectType) { %>
+                    dest: '<%= websiteRoot %>/style.css'
                 <% } else { %>
-                dest: '<%%= yeoman.dev %>/css/style.css'
+                    dest: '<%%= yeoman.dev %>/css/style.css'
+                <% } %>
+            },
+            prod: {
+                options: {
+                    style: 'compressed'
+                },
+                src: ['<%%= yeoman.dev %>/sass/style.scss'],
+                <% if (projectType) { %>
+                    dest: '<%= websiteRoot %>/style.css'
+                <% } else { %>
+                    dest: '<%%= yeoman.prod %>/css/style.css'
                 <% } %>
             }
+        },
+        modernizr: {
+            'devFile': '<%%= yeoman.dev %>/bower_components/modernizr/modernizr.js',
+            'extensibility' : {
+                'prefixed' : true
+            },
+            'outputFile': '<%%= yeoman.dev %>/js/vendor/modernizr.js',
+            'parseFiles' : false,
+            'uglify' : false,
+            'tests' : []
         },
         jshint: {
             options: {
                 bitwise: true,
-                camelcase: true,
                 curly: true,
                 eqeqeq: true,
                 forin: true,
@@ -90,23 +110,16 @@ module.exports = function (grunt) {
                 files: '<%%= jshint.dev.files %>'
             }
         },
-        cssmin: {
-            prod: {
-                files: {
-                    '<%%= yeoman.prod %>/css/style.css': [ '<%%= yeoman.dev %>/css/style.css' ]
-                }
-            }
-        },
         uglify: {
 
             // move and compress modernizr
-            '<%%= yeoman.prod %>/js/vendor/modernizr.js': '<%%= yeoman.dev %>/components/modernizr/modernizr.js',
+            '<%%= yeoman.prod %>/js/vendor/modernizr.js': '<%%= yeoman.dev %>/js/vendor/modernizr.js',
 
             // compress main.js
             '<%%= yeoman.prod %>/js/main.js': '<%%= yeoman.prod %>/js/main.js',
 
             // move and compress require.js
-            '<%%= yeoman.prod %>/js/vendor/require.js': '<%%= yeoman.dev %>/components/requirejs/require.js'
+            '<%%= yeoman.prod %>/js/vendor/require.js': '<%%= yeoman.dev %>/bower_components/requirejs/require.js'
 
         },
         requirejs: {
@@ -160,22 +173,25 @@ module.exports = function (grunt) {
         }
     });
 
-    // for prod we need to lint, remove old build,
-    // compress sass and js and move static files
     grunt.registerTask('build', [
         'jshint:prod',
+        'modernizr',
         'clean:prod',
         'concurrent:prod',
-        'sass',
+        'sass:prod',
         'requirejs',
-        'cssmin',
         'uglify',
         'copy'
     ]);
 
-    // for dev we need to lint js and compile sass
     grunt.registerTask('default', [
         'jshint:dev',
-        'sass'
+        'sass:dev'
+    ]);
+
+    // used by Yeoman for project setup
+    grunt.registerTask('init', [
+        'modernizr',
+        'sass:dev'
     ]);
 };

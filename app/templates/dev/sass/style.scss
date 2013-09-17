@@ -1,3 +1,9 @@
+<% if (projectType) { %>
+/*
+Theme Name: <%= _.capitalize(projectName) %>
+*/
+<% } %>
+
 // project specific variables and mixins and reset config
 @import 'config';
 
@@ -5,8 +11,8 @@
 @import 'reset';
 
 // these are brought in via '$ bower install'
-@import '../components/bourbon/app/assets/stylesheets/bourbon';
-@import '../components/breakpoint/breakpoint/breakpoint';
+@import '../bower_components/bourbon/app/assets/stylesheets/bourbon';
+@import '../bower_components/breakpoint/breakpoint/breakpoint';
 
 // each component style should be agnostic to it's surroundings
 @import 'components';

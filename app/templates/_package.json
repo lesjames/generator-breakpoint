@@ -1,0 +1,25 @@
+{
+    "name": "<%= _.slugify(projectName) %>",
+    "version": "0.0.0",
+    "dependencies": {},
+    "devDependencies": {
+        "grunt": "0.4.1",
+        "grunt-contrib-copy": "0.4.1",
+        "grunt-contrib-concat": "0.3.0",
+        "grunt-contrib-uglify": "0.2.2",
+        "grunt-contrib-jshint": "0.6.3",
+        "grunt-contrib-cssmin": "0.6.1",
+        "grunt-contrib-clean": "0.5.0",
+        "grunt-contrib-sass": "0.5.0",
+        "grunt-contrib-imagemin": "0.1.4",
+        "grunt-contrib-requirejs": "0.4.1",
+        "grunt-contrib-watch": "0.5.2",
+        "grunt-concurrent": "0.3.0",
+        "grunt-modernizr": "~0.3.0",
+        "matchdep": "0.1.2",
+        "bower": "1.2.2"
+    },
+    "engines": {
+        "node": ">=0.8.0"
+    }
+}

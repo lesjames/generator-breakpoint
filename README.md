@@ -1,6 +1,6 @@
 # Yeoman Breakpoint Generator
 
-The Yeoman Breakpoint generator is an opinionated starting point for responsive [Breakpoint](https://github.com/lesjames/breakpoint) projects. It uses [Node](http://nodejs.org/), [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/) to scaffold a project, manage dependencies and ready static files for production. It uses [RequireJS](http://requirejs.org/) to structure your Javascript into modules. It uses [Bourbon](http://bourbon.io/) for CSS3 mixins and [Modernizr](http://modernizr.com/) for progressive enhancement. The generator has project defaults for [Django](https://www.djangoproject.com/) and [Wordpress](http://wordpress.org/), or you can have it assume a vanilla setup.
+The Yeoman Breakpoint generator is an opinionated starting point for responsive [Breakpoint](https://github.com/lesjames/breakpoint) projects. It uses [Node](http://nodejs.org/), [Yeoman](http://yeoman.io/), [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/) to scaffold a project, manage dependencies and ready static files for production. It uses [RequireJS](http://requirejs.org/) to structure your Javascript into modules. It uses [Bourbon](http://bourbon.io/) for CSS3 mixins and [Modernizr](http://modernizr.com/) for progressive enhancement. The generator has project defaults for [Wordpress](http://wordpress.org/) or you can have it assume a vanilla setup.
 
 To learn how to use the Breakpoint grid system please refer to the [Breakpoint](https://github.com/lesjames/breakpoint) project's repo.
 
@@ -22,11 +22,7 @@ From the root of your project folder run...
 
 `$ yo breakpoint`
 
-The generator will install the Grunt and Bower configs wherever you run that command. Your HTML, CSS and JS installation can vary depending on the type of backend you are using. The generator defaults the website root to a folder called `website`. If you want your front end assets to be placed in your current directory use `.` for your website root.
-
-#### About the defaults
-
-This project scaffolds projects to suit the development setup at [Capstrat](https://www.capstrat.com). It's likely that you will want to choose the **'No assumptions'** setup and place your front end assets in your current directory. The Django option only creates a base.html file in a templates directory. The Wordpress setup is very basic but it will install Wordpress for you.
+The generator will install the Grunt and Bower configs wherever you run that command. Your HTML, CSS and JS installation can vary depending on the type of backend you are using. The generator defaults the website root to the current directory. If you want your website root to be placed in a subdirectory you can specify it when propted.
 
 ## Working with Grunt
 

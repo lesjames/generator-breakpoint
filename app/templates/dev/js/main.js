@@ -1,5 +1,5 @@
 require.config({
-    'baseUrl': 'dev/js',
+    'baseUrl': '<%= websiteRoot%>/dev/js',
     'paths': {
         'jquery': '../components/jquery/jquery',
         'breakpoint': '../components/breakpoint/jquery.breakpoint',
