@@ -8,13 +8,13 @@ To learn how to use the Breakpoint grid system please refer to the [Breakpoint](
 
 Breakpoint's scaffolding requires Sass 3.2, Node, Yeoman, Grunt, Bower and this generator to be installed on your system.
 
-Install Sass: `$ sudo gem install sass`
+Install Sass: `$ gem install sass`
 
-Install Node: [http://nodejs.org/](http://nodejs.org/)
+Install Node: [http://nodejs.org/](http://nodejs.org/) or [from the command line](https://gist.github.com/isaacs/579814).
 
 Install Grunt, Yeoman, Bower and the Breakpoint generator...
 
-`$ sudo npm install -g grunt-cli bower yo generator-breakpoint`
+`$ npm install -g grunt-cli bower yo generator-breakpoint`
 
 ## Running the Generator
 
@@ -38,10 +38,10 @@ When pushing to production, Grunt will compile, concat and minify your front end
 
 The easiest way to have your HTML templates switch between development and production versions of your front end assets is to include some logic in your templates. An example of what this looks like is...
 
-```html
-{% if development %}
-    <link rel="stylesheet" href="/dev/css/style.css">
-{% else %}
-    <link rel="stylesheet" href="/static/css/style.css">
-{% endif %}
+```php
+<?php if (WP_DEBUG) : ?>
+    <script data-main="/wp-content/themes/mytheme/dev/js/main" src="/wp-content/themes/mytheme/dev/bower_components/requirejs/require.js"></script>
+<?php else : ?>
+    <script data-main="/wp-content/themes/mytheme/static/js/main" src="/wp-content/themes/mytheme/static/js/vendor/require.js"></script>
+<?php endif; ?>
 ```
