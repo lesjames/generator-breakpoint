@@ -38,7 +38,7 @@ When pushing to production, Grunt will compile, concat and minify your front end
 
 The easiest way to have your HTML templates switch between development and production versions of your front end assets is to include some logic in your templates. An example of what this looks like is...
 
-```php
+```html
 <?php if (WP_DEBUG) : ?>
     <script data-main="/wp-content/themes/mytheme/dev/js/main" src="/wp-content/themes/mytheme/dev/bower_components/requirejs/require.js"></script>
 <?php else : ?>
