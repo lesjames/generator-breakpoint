@@ -4,8 +4,8 @@ require.config({
         'jquery': '../components/jquery/jquery',
         'breakpoint': '../components/breakpoint/jquery.breakpoint',
         'imagesloaded': '../components/imagesloaded/imagesloaded',
-        'eventEmitter': '../components/eventEmitter/EventEmitter',
-        'eventie': '../components/eventie/eventie'
+        'eventEmitter/EventEmitter': '../components/eventEmitter/EventEmitter',
+        'eventie/eventie': '../components/eventie/eventie'
     }
 });
 
